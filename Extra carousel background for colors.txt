@@ -1,0 +1,49 @@
+createSlides() {
+    // Use simple colored backgrounds as fallback
+    const slideData = [
+        {
+            color: '#3498db',
+            caption: 'Premium Wireless Headphones - Noise Cancelling'
+        },
+        {
+            color: '#2ecc71', 
+            caption: 'Professional Camera - 4K Video Recording'
+        },
+        {
+            color: '#e74c3c',
+            caption: 'Smart Fitness Watch - Heart Rate Monitor'
+        },
+        {
+            color: '#f39c12',
+            caption: 'Running Shoes - Lightweight & Comfortable'
+        }
+    ];
+    
+    // Clear existing slides
+    this.track.innerHTML = '';
+    
+    // Create slides with colored backgrounds
+    slideData.forEach((item, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        slide.style.backgroundColor = item.color;
+        slide.style.display = 'flex';
+        slide.style.alignItems = 'center';
+        slide.style.justifyContent = 'center';
+        slide.style.color = 'white';
+        slide.style.fontSize = '24px';
+        slide.style.fontWeight = 'bold';
+        slide.textContent = item.caption;
+        slide.setAttribute('data-index', index);
+        
+        this.track.appendChild(slide);
+        this.slides.push(slide);
+    });
+    
+    // Add click event to slides for modal
+    this.slides.forEach((slide, index) => {
+        slide.addEventListener('click', () => {
+            this.openModal(index);
+        });
+    });
+}
